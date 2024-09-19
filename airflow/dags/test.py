@@ -1,7 +1,7 @@
 from airflow import DAG
-from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python import PythonOperator
 from airflow.utils.dates import days_ago
+from python_callables import print_hello
 
 # Define default arguments
 default_args = {
@@ -22,12 +22,9 @@ dag = DAG(
     catchup=False,
 )
 
-def print_hello():
-    print('Hello, world!')
-
 hello_task = PythonOperator(
     task_id='print_hello',
-    python_callable=print_hello,
+    python_callable=print_hello.print_hello,
     dag=dag,
 )
 
