@@ -1,6 +1,8 @@
 from airflow.decorators import dag, task 
 from datetime import datetime, timedelta
 
+import pendulum
+
 default_args = {
     'owner': 'Eric',
     'retries': 5,
@@ -8,8 +10,8 @@ default_args = {
 }
 @dag(dag_id='dag_with_taskflow_api',
      default_args=default_args,
-     start_date=datetime(2024, 8, 20),
-     schedule_interval='@daily',
+     start_date=pendulum.today('UTC').add(days=-1),
+     schedule='@daily',
      catchup=False
      )
 

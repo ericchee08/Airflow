@@ -2,6 +2,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
 from airflow.utils.dates import days_ago
+import pendulum
 from python_callables.examples import print_airflow_variable, xcom
 
 # Define default arguments
@@ -18,8 +19,8 @@ dag = DAG(
     'test_dag',
     default_args=default_args,
     description='A simple test DAG',
-    schedule_interval='@daily',
-    start_date=days_ago(1),
+    schedule='@daily',
+    start_date=pendulum.today('UTC').add(days=-1),
     catchup=False,
 )
 
