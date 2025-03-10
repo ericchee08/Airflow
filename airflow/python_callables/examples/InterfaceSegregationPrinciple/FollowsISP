@@ -1,0 +1,33 @@
+# Separate interfaces for different roles
+class IOrderTaker:
+    def take_order(self):
+        pass
+
+class ICook:
+    def cook_food(self):
+        pass
+
+class IInventoryManager:
+    def manage_inventory(self):
+        pass
+
+# Implementing classes use only the interfaces they need
+class Waiter(IOrderTaker):
+    def take_order(self):
+        print("Taking customer order.")  # Only what Waiter needs
+
+class Chef(ICook):
+    def cook_food(self):
+        print("Cooking food.")  # Only what Chef needs
+
+class Manager(IInventoryManager):
+    def manage_inventory(self):
+        print("Managing inventory.")  # Only what Manager needs
+
+waiter = Waiter()
+chef = Chef()
+manager = Manager()
+
+waiter.take_order()        # Output: Taking customer order.
+chef.cook_food()           # Output: Cooking food.
+manager.manage_inventory() # Output: Managing inventory.

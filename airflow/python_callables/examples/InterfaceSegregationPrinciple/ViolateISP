@@ -1,0 +1,42 @@
+# A fat interface that violates ISP
+class IRestaurantWorker:
+    def take_order(self):
+        pass
+
+    def cook_food(self):
+        pass
+
+    def manage_inventory(self):
+        pass
+
+# Classes that implement the interface
+class Waiter(IRestaurantWorker):
+    def take_order(self):
+        print("Taking customer order.")
+
+    def cook_food(self):
+        pass  # Unused by Waiter
+
+    def manage_inventory(self):
+        pass  # Unused by Waiter
+
+class Chef(IRestaurantWorker):
+    def take_order(self):
+        pass  # Unused by Chef
+
+    def cook_food(self):
+        print("Cooking food.")
+
+    def manage_inventory(self):
+        pass  # Unused by Chef
+
+class Manager(IRestaurantWorker):
+    def take_order(self):
+        pass  # Unused by Manager
+
+    def cook_food(self):
+        pass  # Unused by Manager
+
+    def manage_inventory(self):
+        print("Managing inventory.")
+        
